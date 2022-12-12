@@ -1,0 +1,87 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+<div class="table-agile-info">
+    <div class="panel panel-default">
+        <div class="panel-heading"><h2>
+            Thông tin học sinh
+        </h2></div>
+        <!--        ho ten, lop-->
+        <div class="row">
+            <div class="col-lg-4"><h4><b>Họ và tên:</b> {{hocsinh.ho}} {{hocsinh.ten}}</h4></div>
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4"><h4><b>Lớp:</b> {{hocsinh.lop.khoahoc.khoiLop}}{{hocsinh.lop.tenLop}}</h4></div>
+        </div>
+        <!--        ngay sinh, gioi tinh-->
+        <div class="row">
+            <div class="col-lg-4"><h4><b>Ngày sinh:</b> {{ hocsinh.ngaysinh }}</h4></div>
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4"><h4><b>Giới tính:</b> {{hocsinh.gioitinh}}</h4></div>
+        </div>
+        <!--        dia chi, sdt-->
+        <div class="row">
+            <div class="col-lg-4"><h4><b>Đại chỉ:</b> {{hocsinh.diachi}}</h4></div>
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4"><h4><b>Số điện thoại:</b> {{hocsinh.sdt}}</h4></div>
+        </div>
+    </div>
+    <div class="table-agile-info">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Bảng điểm
+            </div>
+            <div class="row w3-res-tb">
+                <div class="col-sm-5 m-b-xs"></div>
+                <div class="col-sm-4"></div>
+                <div class="col-sm-3">
+                    <form action="#">
+                        <div class="input-group">
+                            <input type="text" class="input-sm form-control" name="keyword" placeholder="Nhập tên">
+                            <span class="input-group-btn">
+                        <button class="btn btn-sm btn-default" type="submit">Tìm</button>
+                    </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped b-t b-light">
+                    <thead>
+                    <tr>
+                        <th style="width:20px;">
+                            <label class="i-checks m-b-none">
+                                <input type="checkbox"><i></i>
+                            </label>
+                        </th>
+                        <th>Môn học</th>
+                        <th>Điểm</th>
+                        <th>Loại kiểm tra</th>
+                        <th>Học kỳ</th>
+
+                        <th style="width:30px;"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for b in hocsinh.baikts %}
+                    <tr>
+                        <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
+                        <td>{{b.monhoc.tenMH}}</td>
+                        <td><span class="text-ellipsis">{{b.diem}}</span></td>
+                        <td><span class="text-ellipsis">{{b.loaiKT.name}}</span></td>
+                        <td><span class="text-ellipsis">{{b.hocky.name}}</span></td>
+
+                        <td>
+                            <a href="/chitiet-baikt/{{b.id}}" class="active" ui-toggle-class="">
+                                <button class="btn btn-sm btn-primary">Chỉnh sửa</button>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <footer class="panel-footer"></footer>
+        </div>
+    </div>
+</div>
+    {% endblock %}

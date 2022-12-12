@@ -7,17 +7,19 @@ class Khoahoc(db.Model):
     id = Column(Integer, primary_key=True, autoincrement=True)
     nam = Column(Integer, nullable=False)
     khoiLop = Column(Integer, nullable=False)
+    active = Column(Boolean, default=True, nullable=False)
 
     lops = relationship('Lop', backref='khoahoc', lazy=True)
 
     def __str__(self):
-        return str(self.nam)
+        return str(self.nam) + '-' + str(self.khoiLop)
 
 
 class Lop(db.Model):
     id = Column(Integer, primary_key=True, autoincrement=True)
     tenLop = Column(String(50), nullable=False)
     siso = Column(Integer(), default=0, nullable=False)
+    active = Column(Boolean, default=True, nullable=False)
 
     khoahoc_id = Column(Integer, ForeignKey(Khoahoc.id), nullable=False)
 
@@ -101,9 +103,12 @@ if __name__ == '__main__':
 
         # print(p)
 
-        d = Hocsinh.query.filter_by(id=1).first()
-        p = d.ngaysinh.month
-        print(p, type(p))
-
+        # d = Hocsinh.query.filter_by(id=1).first()
+        # p = d.ngaysinh.month
+        # print(p, type(p))
+        c = Baikt.query.filter(Baikt.hocsinh_id == 1,
+                           Baikt.loaiKT_id == 1,
+                           Baikt.hocky_id == 1).count()
+        print(c)
         # db.drop_all()
         # db.create_all()

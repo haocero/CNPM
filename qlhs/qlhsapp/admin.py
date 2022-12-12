@@ -47,7 +47,7 @@ class KhoahocView(ModelView):
 class MonhocView(ModelView):
     can_view_details = True
     create_modal = True
-    edit_modal = True
+    # edit_modal = True
     details_modal = True
     column_labels = {
         'tenMH': 'Tên môn học',
@@ -58,7 +58,7 @@ class MonhocView(ModelView):
 class BaiktView(ModelView):
     can_view_details = True
     create_modal = True
-    edit_modal = True
+    # edit_modal = True
     details_modal = True
     column_labels = {
         'diem': 'Điểm',

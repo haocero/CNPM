@@ -1,0 +1,85 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+<div class="table-agile-info">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            DANH SÁCH LỚP
+        </div>
+        <div class="row w3-res-tb">
+            <div class="col-sm-5 m-b-xs">
+                <div><b>Lớp: {{lop.khoahoc.khoiLop}}{{lop.tenLop}}</b> - {{lop.khoahoc.nam}}</div>
+            </div>
+            <div class="col-sm-4"></div>
+            <div class="col-sm-3">
+                <form action="/chitiet-lop/{{lop.id}}">
+                    <div class="input-group">
+                        <input type="text" class="input-sm form-control" name="keyword" placeholder="Nhập tên">
+                        <span class="input-group-btn">
+                        <button class="btn btn-sm btn-default" type="submit">Tìm</button>
+                    </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped b-t b-light">
+                <thead>
+                <tr>
+                    <th style="width:20px;">
+                        <label class="i-checks m-b-none">
+                            <input type="checkbox"><i></i>
+                        </label>
+                    </th>
+                    <th>Họ và tên lót</th>
+                    <th>Tên</th>
+                    <th>Ngày sinh</th>
+                    <th>Giới tính</th>
+                    <th>Địa chỉ</th>
+
+                    <th style="width:30px;"></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for h in hocsinh %}
+                <tr>
+                    <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
+                    <td>{{h.ho}}</td>
+                    <td><span class="text-ellipsis">{{h.ten}}</span></td>
+                    <td><span class="text-ellipsis">{{h.ngaysinh}}</span></td>
+                    <td><span class="text-ellipsis">{{h.gioitinh}}</span></td>
+                    <td><span class="text-ellipsis">{{h.diachi}}</span></td>
+                    <td>
+                        <a href="/chitiet-hs/{{h.id}}" class="active" ui-toggle-class="">
+                            <button class="btn btn-sm btn-primary">Chỉnh sửa</button>
+                        </a>
+                        <a href="/nhap-diem/hs-{{h.id}}" class="active" ui-toggle-class="">
+                            <button class="btn btn-sm btn-primary">Nhập điểm</button>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <footer class="panel-footer">
+<!--            <div class="row">-->
+
+<!--                <div class="col-sm-5 text-center">-->
+<!--                    <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>-->
+<!--                </div>-->
+<!--                <div class="col-sm-7 text-right text-center-xs">-->
+<!--                    <ul class="pagination pagination-sm m-t-none m-b-none">-->
+<!--                        <li><a href=""><i class="fa fa-chevron-left"></i></a></li>-->
+<!--                        <li><a href="">1</a></li>-->
+<!--                        <li><a href="">2</a></li>-->
+<!--                        <li><a href="">3</a></li>-->
+<!--                        <li><a href="">4</a></li>-->
+<!--                        <li><a href=""><i class="fa fa-chevron-right"></i></a></li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--            </div>-->
+        </footer>
+    </div>
+</div>
+{% endblock %}

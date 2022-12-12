@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Boolean, Float, ForeignKey, DateTime
+from sqlalchemy import Column, Integer, String, Boolean, Float, ForeignKey, DateTime, update
 from sqlalchemy.orm import relationship, backref, query
 from qlhsapp import db, app
 
@@ -17,8 +17,13 @@ class Product(db.Model):
 if __name__ == '__main__':
     with app.app_context():
 
-        # h = Product.query.get(1)
-        # h.name
 
-        db.drop_all()
+        p = Product.query.filter(Product.cat_id==1,
+                                 Product.name=='test').count()
+        print(p)
+
+        db.session.add(p)
+        db.session.commit()
+
+        # # db.drop_all()
         # db.create_all()

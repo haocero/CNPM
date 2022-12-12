@@ -1,0 +1,70 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading"><b>
+                Nhập điểm môn học
+            </b></header>
+
+            {% if msg %}
+            <div class="alert alert-danger">
+                {{ msg }}
+            </div>
+            {% endif %}
+
+            <div class="panel-body">
+                <div class="position-center">
+                    <form role="form" name="nhapdiem" action="/nhap-diem/hs-<int:hs_id>" method="post" onsubmit="return(validate())">
+
+
+                        <div class="form-group">
+                            <label for="hocsinh_id">Họ và tên</label>
+                            <input type="text" name="hocsinh_id" class="form-control" id="hocsinh_id"
+                                   required value="{{hocsinh.ho}} {{hocsinh.ten}}" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="monhoc_id">Môn học</label>
+                            <select class="form-control m-bot15" name="monhoc_id" id="monhoc_id">
+                                {% for m in monhocs %}
+                                <option value="{{m.id}}">{{m.tenMH}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="diem">Điểm</label>
+                            <input type="number" name="diem" class="form-control" id="diem"
+                                   required placeholder="Nhập điểm...">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="loaiKT_id">Loại kiểm tra</label>
+                            <select class="form-control m-bot15" name="loaiKT_id" id="loaiKT_id">
+                                {% for l in loaikt %}
+                                <option value="{{l.id}}">{{l.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="hocky_id">Học kỳ</label>
+                            <select class="form-control m-bot15" name="hocky_id" id="hocky_id">
+                                {% for h in hocky %}
+                                <option value="{{h.id}}">{{h.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <input type="submit" name="add_khoa" class="btn btn-info" value="Thêm">
+                    </form>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+</div>
+{% endblock %}
